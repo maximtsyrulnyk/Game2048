@@ -13,7 +13,7 @@ Replace the paths below with your own screenshots / GIF (docs/ folder).
 Gameplay	Win state	Game over
 Show Image	Show Image	Show Image
 
-🔗 Live demo: https://maximtsyrulnyk.github.io/js_2048_game/ 🎨 Design reference: Figma layout (insert the direct link to the specific frame)
+🔗 Live demo: [DEMO_LINK](https://maximtsyrulnyk.github.io/js_2048_game/) 🎨 Design reference: Figma layout (insert the direct link to the specific frame)
 
 📚 Table of Contents
 Features
