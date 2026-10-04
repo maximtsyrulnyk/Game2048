@@ -1,4 +1,4 @@
-🎮 2048 Game
+<h1>🎮 2048 Game </h1>
 
 Show Image Show Image Show Image Show Image Show Image
 
@@ -122,7 +122,7 @@ npm install      # or: yarn install
 # 4. Start the dev server
 npm start        # or: yarn start
 
-After that the app will be available at http://localhost:1234 (the port may differ — check your terminal output).
+After that the app will be available at http://localhost: (the port may differ — check your terminal output).
 
 📜 Available Scripts
 Command	Description
