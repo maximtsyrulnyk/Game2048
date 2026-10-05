@@ -69,7 +69,6 @@ You win when the **2048** tile appears, and you lose when the board is full and 
 ## Example
 
 - [LIVE DEMO](https://maximtsyrulnyk.github.io/Game2048/)
-- [FIGMA DESIGN](https://www.figma.com/)
 
 ## Technologies Used
 
