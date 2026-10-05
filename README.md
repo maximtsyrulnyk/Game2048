@@ -1,159 +1,113 @@
-<h1>🎮 2048 Game </h1>
+# Game2048
 
-Show Image Show Image Show Image Show Image Show Image
+## Introduction
 
-A classic 2048 puzzle game built with vanilla JavaScript using an object-oriented approach. Slide numbered tiles on a 4×4 grid, merge equal values and reach the 2048 tile before the board fills up.
+**Game2048** is a browser version of the classic 2048 puzzle, built with vanilla JavaScript and an object-oriented design. The player slides numbered tiles across a 4x4 board, merging identical values to build up to the legendary **2048** tile. The game is intentionally framework-free and focuses on clean code and a clear separation between game logic and user interface.
 
-The project is intentionally framework-free: all game logic lives in a standalone Game class that knows nothing about the DOM, while the UI layer only renders its state and forwards user input.
+### Key Features
 
-📸 Preview
+- **Tile Sliding and Merging**: Tiles move in four directions, and equal neighbours combine into one tile with the doubled value.
+- **Keyboard Controls**: The whole game is played with the arrow keys.
+- **Live Score**: The score grows with every merge and is refreshed instantly on the screen.
+- **Game Status Detection**: The game recognises the idle, playing, win and lose states and displays the matching message.
+- **Start and Restart Buttons**: A session can be launched or reset at any moment without reloading the page.
+- **Custom Favicon**: The browser tab shows a dedicated game icon.
 
-Replace the paths below with your own screenshots / GIF (docs/ folder).
+## Challenges
 
-Gameplay	Win state	Game over
-Show Image	Show Image	Show Image
+The main difficulty of the project was building a reliable game engine rather than drawing the interface.
 
-🔗 Live demo: [DEMO_LINK](https://maximtsyrulnyk.github.io/js_2048_game/) 🎨 Design reference: Figma layout (insert the direct link to the specific frame)
+### Key Challenges:
 
-📚 Table of Contents
-Features
-How to Play
-Tech Stack
-Architecture
-Project Structure
-Getting Started
-Available Scripts
-Deployment
-Roadmap
-Author
-License
-✨ Features
-Classic 2048 mechanics — tiles slide in four directions, equal tiles merge once per move, a new tile (2 or 4) spawns after every valid move.
-Score tracking — points are added for every merge.
-Game status detection — the game automatically switches between idle, playing, win and lose states.
-Keyboard controls — arrow keys for movement.
-Start / Restart buttons — a clean way to begin and reset a session.
-Clear separation of concerns — game logic (Game class) is fully decoupled from rendering (main.js).
-Responsive layout — styled with SCSS, based on the Figma design.
-🕹 How to Play
-Action	Control
-Move tiles	← ↑ → ↓ arrow keys
-Start the game	Start button
-Reset the board	Restart button
+1. **Move and Merge Algorithm**: Each row or column has to be compacted, merged and compacted again, while making sure a freshly merged tile cannot merge twice in a single move.
+2. **Loss Detection**: A full board does not always mean defeat, so the game must also check that no adjacent tiles can still be combined.
+3. **Valid Move Handling**: A new tile should appear only when a move really changed the board, otherwise blocked moves would give the player free tiles.
+4. **Single Source of State**: The board, score and status live in the `Game` class only, and the UI layer simply reads and renders them without keeping its own copy.
 
-Rules
+## Technical Requirements
 
-Press Start — two random tiles appear.
-Use the arrow keys to slide all tiles in one direction.
-When two tiles with the same number collide, they merge into one with their sum.
-You win when a 2048 tile appears.
-You lose when the board is full and no merges are possible.
-🛠 Tech Stack
-Layer	Technology
-Markup	HTML5
-Styling	CSS3, SCSS
-Logic	JavaScript (ES6+), OOP, ES Modules
-Bundler / dev server	Parcel
-Deployment	GitHub Pages (gh-pages)
-🧩 Architecture
+To run this project, you will need:
 
-The project follows a simple model–view split:
+- Modern web browser (latest versions of Chrome, Firefox, Safari, or Edge)
+- Node.js (version 16.x or newer)
+- NPM (version 8.x or newer) or Yarn
 
-┌──────────────────┐   user events   ┌─────────────────┐
-│     main.js      │ ──────────────▶ │   Game (class)  │
-│  (DOM + events)  │ ◀────────────── │  (pure logic)   │
-└──────────────────┘   state/score   └─────────────────┘
-Game — owns the board matrix, score and status. It has no access to document, so it can be unit-tested in isolation.
-main.js — subscribes to keyboard/button events, calls Game methods and re-renders the board, score and messages from the returned state.
+## Installation and Setup
 
-Typical public API of the Game class
+To get a local copy of the project up and running, follow these steps:
 
-Method	Description
-start()	Fills the board with two initial tiles and sets status to playing.
-restart()	Resets board, score and status.
-moveLeft() / moveRight() / moveUp() / moveDown()	Slide and merge tiles; spawn a new tile only if the board changed.
-getState()	Returns the current 4×4 board.
-getScore()	Returns the current score.
-getStatus()	Returns idle, playing, win or lose.
+1. Clone the repository:
+```bash
+    git clone https://github.com/maximtsyrulnyk/Game2048.git
+```
 
-Game status flow
+2. Move to the project folder:
+```bash
+    cd Game2048
+```
 
-start()
-2048 tile reached
-no moves left
-restart()
-restart()
-restart()
-idle
-playing
-win
-lose
+3. Install the dependencies:
+```bash
+    npm install
+```
 
-⚠️ Adjust method names and statuses to match your actual implementation.
+4. Launch the development server:
+```bash
+    npm start
+```
 
-📁 Project Structure
-js_2048_game/
-├── docs/                # screenshots and GIFs for the README
+## Usage
+
+After the server starts, open the address shown in your terminal (typically `http://localhost:1234`). Then:
+
+- Press **Start** to begin a new game.
+- Use the **arrow keys** (`←` `↑` `→` `↓`) to slide the tiles.
+- Press **Restart** to reset the board and the score.
+
+You win when the **2048** tile appears, and you lose when the board is full and no merges are possible.
+
+## Example
+
+- [LIVE DEMO](https://maximtsyrulnyk.github.io/Game2048/)
+- [FIGMA DESIGN](https://www.figma.com/)
+
+## Technologies Used
+
+This project was built using the following technologies:
+
+- **HTML5**: For the page structure and semantic markup.
+- **CSS3 / SCSS**: For styling the board and tiles and for responsive layout.
+- **JavaScript (ES6+)**: For the game logic, classes, modules and event handling.
+- **Parcel**: For bundling the sources and running the dev server.
+- **Git**: For version control.
+- **GitHub / GitHub Pages**: For hosting the repository and the live demo.
+
+## Design Specifications
+
+- **Design Sizes**:
+  - Desktop: 1280px
+  - Tablet: 640px
+  - Mobile: > 320px
+- **Favicon**: `src/images/favicon.png`, connected in `index.html`.
+
+## Project Structure
+
+```
+Game2048/
 ├── src/
-│   ├── index.html
+│   ├── images/
+│   │   └── favicon.png
 │   ├── scripts/
-│   │   ├── main.js      # UI layer: DOM updates, event listeners
+│   │   ├── main.js            # DOM updates and event listeners
 │   │   └── modules/
-│   │       └── Game.class.js   # core game logic
-│   └── styles/
-│       └── main.scss
+│   │       └── Game.class.js  # game rules and state
+│   ├── styles/
+│   │   └── main.scss
+│   └── index.html
 ├── package.json
 └── README.md
-🚀 Getting Started
-Prerequisites
-Node.js v18+
-npm (bundled with Node.js) or Yarn
-Installation
-bash
-# 1. Clone the repository
-git clone https://github.com/maximtsyrulnyk/js_2048_game.git
+```
 
-# 2. Go to the project folder
-cd js_2048_game
+## Author
 
-# 3. Install dependencies
-npm install      # or: yarn install
-
-# 4. Start the dev server
-npm start        # or: yarn start
-
-After that the app will be available at http://localhost: (the port may differ — check your terminal output).
-
-📜 Available Scripts
-Command	Description
-npm start	Runs the development server with hot reload.
-npm run build	Creates an optimized production build.
-npm run lint	Checks JS/SCSS code style.
-npm run deploy	Publishes the build to GitHub Pages.
-
-Keep only the scripts that actually exist in your package.json.
-
-🌐 Deployment
-
-The game is hosted on GitHub Pages. To redeploy after changes:
-
-bash
-npm run build
-npm run deploy
-🗺 Roadmap
- Persist the best score in localStorage
- Touch / swipe controls for mobile devices
- Tile slide and merge animations
- Undo last move
- Unit tests for the Game class (Jest)
- Keyboard accessibility and ARIA labels
-👨‍💻 Author
-
-Maksym Tsyrulnyk Junior Full-Stack Developer · Master's student in Computer Science
-
-GitHub: @maximtsyrulnyk
-LinkedIn: maksym-tsyrulnyk-994892201
-Email: maximtsyrulnyk@gmail.com
-📄 License
-
-This project is licensed under the MIT License.
+**Maksym Tsyrulnyk** — [GitHub](https://github.com/maximtsyrulnyk)
